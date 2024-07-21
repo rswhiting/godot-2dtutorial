@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://85pqy7rtw3ku"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_rai5j"]
+[ext_resource type="Texture2D" uid="uid://cj8q8pxyaiwo" path="res://art/enemyFlyingAlt_1.png" id="2_p20dj"]
+[ext_resource type="Texture2D" uid="uid://ccqako1octov4" path="res://art/enemyFlyingAlt_2.png" id="3_oyu51"]
+[ext_resource type="Texture2D" uid="uid://bnit73hey7d2j" path="res://art/enemySwimming_1.png" id="4_pqjfk"]
+[ext_resource type="Texture2D" uid="uid://cs6xtpogswe0r" path="res://art/enemySwimming_2.png" id="5_mqkte"]
+[ext_resource type="Texture2D" uid="uid://bk25cx7jmmtw8" path="res://art/enemyWalking_1.png" id="6_ytef0"]
+[ext_resource type="Texture2D" uid="uid://xmcdebvhbgup" path="res://art/enemyWalking_2.png" id="7_mna68"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pxo5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p20dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oyu51")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pqjfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mqkte")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ytef0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mna68")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ookl"]
+radius = 13.0
+height = 26.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_rai5j")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_pxo5o")
+animation = &"swim"
+frame_progress = 0.50833
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0ookl")
